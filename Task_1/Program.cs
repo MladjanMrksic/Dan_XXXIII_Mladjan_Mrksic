@@ -13,37 +13,56 @@ namespace Task_1
         static void Main(string[] args)
         {
             Program prog = new Program();
-            Thread t1 = new Thread(prog.MatrixToFile);
-            Thread t2 = new Thread(prog.RandomNumbersToFile);
-            Thread t3 = new Thread(prog.ReadMatrixFromFile);
-            Thread t4 = new Thread(prog.AddingRandomNumbersFromFile);
-            List<Thread> threadList = new List<Thread>() { t1, t2, t3, t4 };
+            List<Thread> threadList = new List<Thread>();
+            Thread t;
             for (int i = 1; i < 5; i++)
             {
                 if (i % 2 == 0)
                 {
-                    threadList[i - 1].Name = string.Format("Thread_" + i + i);
-                    Console.WriteLine(threadList[i - 1].Name + " created.");
+                    if (i == 2)
+                    {
+                        t = new Thread(prog.RandomNumbersToFile);
+                        t.Name = string.Format("Thread_" + i + i);
+                        Console.WriteLine(t.Name + " created.");
+                        threadList.Add(t);
+                    }
+                    else
+                    {
+                        t = new Thread(prog.AddingRandomNumbersFromFile);
+                        t.Name = string.Format("Thread_" + i + i);
+                        Console.WriteLine(t.Name + " created.");
+                        threadList.Add(t);
+                    }
                 }
                 else
                 {
-                    threadList[i - 1].Name = string.Format("Thread_" + i);
-                    Console.WriteLine(threadList[i - 1].Name + " created.");
+                    if (i == 1)
+                    {
+                        t = new Thread(prog.MatrixToFile);                        
+                        t.Name = string.Format("Thread_" + i);
+                        Console.WriteLine(t.Name + " created.");
+                        threadList.Add(t);
+                    }
+                    else
+                    {
+                        t = new Thread(prog.ReadMatrixFromFile);                        
+                        t.Name = string.Format("Thread_" + i);
+                        Console.WriteLine(t.Name + " created.");
+                        threadList.Add(t);
+                    }
                 }
             }
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            t1.Start();
-            t2.Start();
-            t2.Join();
+            threadList[0].Start();
+            threadList[1].Start();
+            threadList[1].Join();
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-            ts.Hours, ts.Minutes, ts.Seconds,
-            ts.Milliseconds / 10);
-            Console.WriteLine("Thread_1 and Thread_22 run time was " + elapsedTime); 
-            t3.Start();            
-            t4.Start();
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",ts.Hours, ts.Minutes, ts.Seconds,ts.Milliseconds / 10);
+            Console.WriteLine("Thread_1 and Thread_22 run time was " + elapsedTime);
+            threadList[2].Start();
+            threadList[3].Start();
             Console.ReadLine();
         }
         public void MatrixToFile()
