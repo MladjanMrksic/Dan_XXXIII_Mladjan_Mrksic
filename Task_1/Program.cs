@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+
 
 namespace Task_1
 {
@@ -45,14 +44,11 @@ namespace Task_1
             Console.WriteLine("Thread_1 and Thread_22 run time was " + elapsedTime); 
             t3.Start();            
             t4.Start();
-
             Console.ReadLine();
-
         }
         public void MatrixToFile()
         {
             StreamWriter sw = new StreamWriter(".../.../FileByThread_1.txt");
-            int[,] matrix = new int[100, 100];
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 100; i++)
             {
@@ -61,12 +57,10 @@ namespace Task_1
                 {                    
                     if (i==j)
                     {
-                        matrix[i, j] = 1;
                         sb.Append(1);
                     }
                     else
                     {
-                        matrix[i, j] = 0;
                         sb.Append(0);
                     }                   
                 }
@@ -74,7 +68,6 @@ namespace Task_1
             }
             sw.Close();
         }
-
         public void RandomNumbersToFile()
         {
             StreamWriter sw2 = new StreamWriter(".../.../FileByThread_22.txt");
@@ -90,7 +83,6 @@ namespace Task_1
             }
             sw2.Close();
         }
-
         public void ReadMatrixFromFile()
         {
             
@@ -101,11 +93,9 @@ namespace Task_1
                 Console.WriteLine(line);
             }
             sr.Close();
-        }
-         
+        }         
         public void AddingRandomNumbersFromFile()
-        {
-           
+        {           
             StreamReader sr2 = new StreamReader(".../.../FileByThread_22.txt");
             string line;
             int temp = 0;
