@@ -71,24 +71,18 @@ namespace Task_1
         public void MatrixToFile()
         {
             if (!File.Exists(matrixPath))
-            {
                 File.Create(matrixPath).Close();
-            }
             StreamWriter sw = new StreamWriter(matrixPath);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 100; i++)
             {
                 sb.Clear();
                 for (int j = 0; j < 100; j++)
-                {                    
+                {
                     if (i==j)
-                    {
                         sb.Append(1);
-                    }
                     else
-                    {
                         sb.Append(0);
-                    }                   
                 }
                 sw.WriteLine(sb);                
             }
@@ -97,19 +91,16 @@ namespace Task_1
         public void RandomNumbersToFile()
         {
             if (!File.Exists(randomOddNumbersPath))
-            {
                 File.Create(randomOddNumbersPath).Close();
-            }
             StreamWriter sw2 = new StreamWriter(randomOddNumbersPath);
             Random rnd = new Random();
             for (int i = 0; i < 1000; i++)
             {
                 int temp = rnd.Next(0, 10000);
                 if (temp % 2 == 1)
-                {
                     sw2.WriteLine(temp);
-                }
-                else --i;
+                else
+                    --i;
             }
             sw2.Close();
         }
@@ -120,9 +111,7 @@ namespace Task_1
             StreamReader sr = new StreamReader(matrixPath);
             string line;
             while ((line = sr.ReadLine()) != null)
-            {
                 Console.WriteLine(line);
-            }
             sr.Close();
         }         
         public void AddingRandomNumbersFromFile()
@@ -133,9 +122,7 @@ namespace Task_1
             string line;
             int temp = 0;
             while ((line = sr2.ReadLine()) != null)
-            {
                 temp += Convert.ToInt32(line);
-            }
             Console.WriteLine(temp);
             sr2.Close();
         }
