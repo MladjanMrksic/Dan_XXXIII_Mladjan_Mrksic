@@ -56,6 +56,7 @@ namespace Task_1
             stopWatch.Start();
             threadList[0].Start();
             threadList[1].Start();
+            threadList[0].Join();
             threadList[1].Join();
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
