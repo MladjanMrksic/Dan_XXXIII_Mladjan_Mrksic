@@ -70,6 +70,10 @@ namespace Task_1
         }
         public void MatrixToFile()
         {
+            if (!File.Exists(matrixPath))
+            {
+                File.Create(matrixPath).Close();
+            }
             StreamWriter sw = new StreamWriter(matrixPath);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 100; i++)
@@ -92,6 +96,10 @@ namespace Task_1
         }
         public void RandomNumbersToFile()
         {
+            if (!File.Exists(randomOddNumbersPath))
+            {
+                File.Create(randomOddNumbersPath).Close();
+            }
             StreamWriter sw2 = new StreamWriter(randomOddNumbersPath);
             Random rnd = new Random();
             for (int i = 0; i < 1000; i++)
@@ -107,7 +115,8 @@ namespace Task_1
         }
         public void ReadMatrixFromFile()
         {
-            
+            if (!File.Exists(matrixPath))            
+                File.Create(matrixPath).Close();            
             StreamReader sr = new StreamReader(matrixPath);
             string line;
             while ((line = sr.ReadLine()) != null)
@@ -117,7 +126,9 @@ namespace Task_1
             sr.Close();
         }         
         public void AddingRandomNumbersFromFile()
-        {           
+        {
+            if (!File.Exists(randomOddNumbersPath))            
+                File.Create(randomOddNumbersPath).Close();            
             StreamReader sr2 = new StreamReader(randomOddNumbersPath);
             string line;
             int temp = 0;
