@@ -15,9 +15,9 @@ namespace Task_1
         {
             Program prog = new Program();
             Thread t1 = new Thread(prog.MatrixToFile);
-            Thread t2 = new Thread(prog.UpisRandomBrojeva);
-            Thread t3 = new Thread(prog.CitanjeMatrice);
-            Thread t4 = new Thread(prog.SabiranjeRandoma);
+            Thread t2 = new Thread(prog.RandomNumbersToFile);
+            Thread t3 = new Thread(prog.ReadMatrixFromFile);
+            Thread t4 = new Thread(prog.AddingRandomNumbersFromFile);
             List<Thread> threadList = new List<Thread>() { t1, t2, t3, t4 };
             for (int i = 1; i < 5; i++)
             {
@@ -52,7 +52,7 @@ namespace Task_1
         public void MatrixToFile()
         {
             StreamWriter sw = new StreamWriter(".../.../FileByThread_1.txt");
-            int[,] matrica = new int[100, 100];
+            int[,] matrix = new int[100, 100];
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 100; i++)
             {
@@ -61,12 +61,12 @@ namespace Task_1
                 {                    
                     if (i==j)
                     {
-                        matrica[i, j] = 1;
+                        matrix[i, j] = 1;
                         sb.Append(1);
                     }
                     else
                     {
-                        matrica[i, j] = 0;
+                        matrix[i, j] = 0;
                         sb.Append(0);
                     }                   
                 }
@@ -75,7 +75,7 @@ namespace Task_1
             sw.Close();
         }
 
-        public void UpisRandomBrojeva()
+        public void RandomNumbersToFile()
         {
             StreamWriter sw2 = new StreamWriter(".../.../FileByThread_22.txt");
             Random rnd = new Random();
@@ -91,7 +91,7 @@ namespace Task_1
             sw2.Close();
         }
 
-        public void CitanjeMatrice()
+        public void ReadMatrixFromFile()
         {
             
             StreamReader sr = new StreamReader(".../.../FileByThread_1.txt");
@@ -103,7 +103,7 @@ namespace Task_1
             sr.Close();
         }
          
-        public void SabiranjeRandoma()
+        public void AddingRandomNumbersFromFile()
         {
            
             StreamReader sr2 = new StreamReader(".../.../FileByThread_22.txt");
