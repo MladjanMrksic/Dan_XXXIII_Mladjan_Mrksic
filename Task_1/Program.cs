@@ -10,6 +10,8 @@ namespace Task_1
 {
     class Program
     {
+        string matrixPath = ".../.../FileByThread_1.txt";
+        string randomOddNumbersPath = ".../.../FileByThread_22.txt";
         static void Main(string[] args)
         {
             Program prog = new Program();
@@ -68,7 +70,7 @@ namespace Task_1
         }
         public void MatrixToFile()
         {
-            StreamWriter sw = new StreamWriter(".../.../FileByThread_1.txt");
+            StreamWriter sw = new StreamWriter(matrixPath);
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 100; i++)
             {
@@ -90,7 +92,7 @@ namespace Task_1
         }
         public void RandomNumbersToFile()
         {
-            StreamWriter sw2 = new StreamWriter(".../.../FileByThread_22.txt");
+            StreamWriter sw2 = new StreamWriter(randomOddNumbersPath);
             Random rnd = new Random();
             for (int i = 0; i < 1000; i++)
             {
@@ -106,7 +108,7 @@ namespace Task_1
         public void ReadMatrixFromFile()
         {
             
-            StreamReader sr = new StreamReader(".../.../FileByThread_1.txt");
+            StreamReader sr = new StreamReader(matrixPath);
             string line;
             while ((line = sr.ReadLine()) != null)
             {
@@ -116,7 +118,7 @@ namespace Task_1
         }         
         public void AddingRandomNumbersFromFile()
         {           
-            StreamReader sr2 = new StreamReader(".../.../FileByThread_22.txt");
+            StreamReader sr2 = new StreamReader(randomOddNumbersPath);
             string line;
             int temp = 0;
             while ((line = sr2.ReadLine()) != null)
